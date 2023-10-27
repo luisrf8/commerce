@@ -1,7 +1,7 @@
 'use client'
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
-import LogoSquare from 'components/logo-square';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
 import MobileMenu from './mobile-menu';
@@ -44,18 +44,17 @@ export default function Navbar() {
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
-      <div className="block flex-none md:hidden">
+      <div className="block flex-none md:hidden mt-6">
         <MobileMenu menu={menuItems} />
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
           <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
-            <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {/* {SITE_NAME} */} STORE
-            </div>
+          <Image src={"/images/larf-white.png"}
+            width={150}
+            height={100}/>
           </Link>
-          <ul className="hidden gap-6 text-sm md:flex md:items-center">
+          <ul className="hidden gap-6 mt-4 flex justify-center text-md md:flex md:items-center">
             {menuItems.map((item) => (
               <li key={item.title}>
                 <Link
@@ -67,16 +66,11 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <button className='ml-6 text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300'
-            onClick={() => handleInstallPWA()}
-          >
-            Download App
-          </button>
         </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
+        <div className="hidden mt-4 justify-center md:flex md:w-1/3">
           <Search />
         </div>
-        <div className="flex justify-end md:w-1/3">
+        <div className="flex justify-end md:w-1/3 mt-4">
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
