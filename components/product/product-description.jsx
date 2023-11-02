@@ -2,7 +2,6 @@
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { VariantSelector } from './variant-selector';
 
@@ -35,10 +34,9 @@ export function ProductDescription(data) {
           <Price amount={product.priceRange.maxVariantPrice.amount} currencyCode={product.priceRange.maxVariantPrice.currencyCode} />
         </div> 
       </div>
-
-      {product && (
+      {/* {product && (
         <Image src={product.featuredImage} alt={product.title} />
-        )}
+        )} */}
       <VariantSelector options={product.options} variants={product.variants} itemSelected={itemSelected} setItemSelected={setItemSelected}  />
       {product.descriptionHtml ? (
         <Prose className="mb-6 text-sm leading-tight dark:text-white/[60%]" html={product.descriptionHtml} />

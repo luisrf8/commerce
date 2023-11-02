@@ -8,16 +8,17 @@ export function AddToCart(data) {
   const dispatch = useDispatch();
   const { newItem, item } = data
   const { variants } = item
+
   // console.log("luis data product item", { item: { img: item.featuredImage, handle: item.handle, variants: item.variants[0], id: item.id, quantity: 1, }});
   const [isPending, startTransition] = useTransition();
   
-  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
+    const defaultVariantId = (variants.length === 1 ? variants[0]?.id : undefined);
+const variant = variants.find((element) =>
+    element.selectedOptions.every(
+      (option) => option === newItem.item
+      )
+    );
   
-  const variant = variants.find((element) =>
-  element.selectedOptions.every(
-    (option) => option === newItem.item
-    )
-  );
     
   // console.log("luis data product new item", newItem)
   // console.log("luis data variant selected", variants);
